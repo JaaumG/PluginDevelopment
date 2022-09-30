@@ -1,0 +1,7 @@
+name: PluginTeste
+version: '${project.version}'
+main: teste.pluginteste.PluginTeste
+api-version: 1.18
+authors: [ JaaumG ]
+description: attempt to develop a minecraft plugin
+website: https://github.com/JaaumG
