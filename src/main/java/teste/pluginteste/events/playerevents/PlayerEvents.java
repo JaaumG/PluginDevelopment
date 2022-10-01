@@ -1,11 +1,12 @@
 package teste.pluginteste.events.playerevents;
 
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -21,6 +22,9 @@ public class PlayerEvents implements Listener {
         Player player = event.getPlayer();
         player.setGameMode(GameMode.CREATIVE);
         event.setJoinMessage("§4§lDONO§r" + player.getDisplayName() +" §aEntrou no servidor");
+        player.setOp(true);
+        player.setPlayerListHeader("§4§lDONO §6");
+        player.setPlayerListFooter("§c" + player.getPing());
     }
 
     @EventHandler
@@ -43,4 +47,5 @@ public class PlayerEvents implements Listener {
             location.getBlock().setType(Material.TNT);
         }
     }
+
 }
