@@ -9,3 +9,7 @@ commands:
     ping:
       description: Teste
       usage: /<command>
+    gamemode:
+      description: Trocar gamemode
+      usage: /<command>
+      aliases: gm
