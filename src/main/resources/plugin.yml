@@ -5,3 +5,7 @@ api-version: 1.18
 authors: [ JaaumG ]
 description: attempt to develop a minecraft plugin
 website: https://github.com/JaaumG
+commands:
+    ping:
+      description: Teste
+      usage: /<command>
