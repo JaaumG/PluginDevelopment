@@ -1,19 +1,12 @@
 package teste.pluginteste;
 
-import net.skinsrestorer.api.PlayerWrapper;
-import net.skinsrestorer.api.SkinsRestorerAPI;
-import net.skinsrestorer.api.exception.SkinRequestException;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import teste.pluginteste.commands.Fake;
-import teste.pluginteste.commands.Gamemode;
-import teste.pluginteste.commands.Heal;
-import teste.pluginteste.commands.Ping;
+import teste.pluginteste.commands.*;
 import teste.pluginteste.events.playerevents.ChatEvents;
+import teste.pluginteste.events.playerevents.MenuEvents;
 import teste.pluginteste.events.playerevents.PlayerEvents;
 
 import java.util.ArrayList;
@@ -26,10 +19,14 @@ public final class PluginTeste extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("Hello World by JAAUMG");
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(this), this);
         Bukkit.getPluginManager().registerEvents(new ChatEvents(this), this);
+        Bukkit.getPluginManager().registerEvents(new MenuEvents(), this);
         getCommand("fake").setExecutor(new Fake());
         getCommand("gamemode").setExecutor(new Gamemode());
         getCommand("ping").setExecutor(new Ping());
         getCommand("heal").setExecutor(new Heal());
+        getCommand("feed").setExecutor(new Feed());
+        getCommand("tag").setExecutor(new Tag());
+
     }
 
     @Override

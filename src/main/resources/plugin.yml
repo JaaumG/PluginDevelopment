@@ -20,3 +20,7 @@ commands:
     heal:
       description: Curar-se ou curar outro jogador
       usage: /<command> [<player>]
+    feed:
+      description: Alimentar-se ou alimentar outro jogador
+      usage: /<command> [<player>]
+    tag:

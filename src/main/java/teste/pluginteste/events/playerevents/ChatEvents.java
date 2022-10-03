@@ -13,6 +13,7 @@ public class ChatEvents implements Listener {
 
     @EventHandler
     public void onMessageSend(AsyncPlayerChatEvent event){
+        event.setFormat(event.getPlayer().getDisplayName()+"§8: §7"+event.getMessage());
         if(event.getMessage().contains("&")){
             event.setMessage(event.getMessage().replace("&", "§"));
         }
