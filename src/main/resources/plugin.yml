@@ -17,3 +17,6 @@ commands:
     fake:
       description: Trocar o nick
       usage: /<command> nickname
+    heal:
+      description: Curar-se ou curar outro jogador
+      usage: /<command> [<player>]
