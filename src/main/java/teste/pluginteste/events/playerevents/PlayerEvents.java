@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerEvents implements Listener {
 
@@ -25,23 +24,7 @@ public class PlayerEvents implements Listener {
         player.setGameMode(GameMode.CREATIVE);
         event.setJoinMessage("§4§lDONO§r" + player.getDisplayName() +" §aEntrou no servidor");
         player.setOp(true);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                int ping = player.getPing();
-                if(ping<=30) {
-                    player.setPlayerListFooter("Ping: §2" + ping + "ms");
-                }else if(ping<=50){
-                    player.setPlayerListFooter("Ping: §a" + ping + "ms");
-                }else if(ping<=70){
-                    player.setPlayerListFooter("Ping: §e" + ping + "ms");
-                }else if(ping<=150){
-                    player.setPlayerListFooter("Ping: §c" + ping + "ms");
-                }else{
-                    player.setPlayerListFooter("Ping: §4" + ping + "ms");
-                }
-            }
-        }.run();
+
     }
 
 

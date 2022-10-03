@@ -1,13 +1,14 @@
 package teste.pluginteste;
 
+import net.skinsrestorer.api.PlayerWrapper;
+import net.skinsrestorer.api.SkinsRestorerAPI;
+import net.skinsrestorer.api.exception.SkinRequestException;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import teste.pluginteste.events.playerevents.ChatEvents;
 import teste.pluginteste.events.playerevents.PlayerEvents;
 
@@ -16,12 +17,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public final class PluginTeste extends JavaPlugin {
-
+    private SkinsRestorerAPI skinRestorerAPI;
     @Override
     public void onEnable() {
         Bukkit.getConsoleSender().sendMessage("Hello World by JAAUMG");
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(this), this);
         Bukkit.getPluginManager().registerEvents(new ChatEvents(this), this);
+        skinRestorerAPI = SkinsRestorerAPI.getApi();
     }
 
     @Override
@@ -44,7 +46,7 @@ public final class PluginTeste extends JavaPlugin {
                     }
                     return true;
                 } else {
-                    Bukkit.getConsoleSender().sendMessage("Este comando é apenas para players!");
+                    Bukkit.getConsoleSender().sendMessage("Especifique o player para verificar o ping dele(a)");
                     return true;
                 }
             }if(args.length==1){
@@ -148,6 +150,37 @@ public final class PluginTeste extends JavaPlugin {
                 }
             }
         }
+        if(command.getName().equalsIgnoreCase("fake")){
+            if(sender instanceof Player){
+                if(args.length == 0 && ((Player) sender).getDisplayName()!=sender.getName()) {
+                    ((Player) sender).setCustomName(sender.getName());
+                    ((Player) sender).setPlayerListName(sender.getName());
+                    ((Player) sender).setDisplayName(sender.getName());
+                    ((Player) sender).setCustomNameVisible(true);
+                    try {
+                        skinRestorerAPI.setSkin(sender.getName(), sender.getName());
+                        skinRestorerAPI.applySkin(new PlayerWrapper(sender));
+                    } catch (SkinRequestException e) {
+                        throw new RuntimeException(e);
+                    }
+                    sender.sendMessage("Seu fake foi desabilitado.");
+                    return  true;
+                }if(args.length==1) {
+                    ((Player) sender).setDisplayName(args[0]);
+                    ((Player) sender).setCustomName(args[0]);
+                    ((Player) sender).setPlayerListName(args[0]);
+                    ((Player) sender).setCustomNameVisible(true);
+                    try {
+                        skinRestorerAPI.setSkin(sender.getName(), args[0]);
+                        skinRestorerAPI.applySkin(new PlayerWrapper(sender));
+                    } catch (SkinRequestException e) {
+                        throw new RuntimeException(e);
+                    }
+                    sender.sendMessage("Seu nick foi atualizado para: " + args[0]);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -164,7 +197,8 @@ public final class PluginTeste extends JavaPlugin {
             }else{
                 return null;
             }
-        }if(command.getName().equalsIgnoreCase("ping")){
+        }
+        if(command.getName().equalsIgnoreCase("ping")){
             if(args.length==1){
                 List<String> players = new ArrayList<>();
                 Bukkit.getOnlinePlayers().forEach(Player -> players.add(Player.getDisplayName()));

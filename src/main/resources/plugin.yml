@@ -5,11 +5,15 @@ api-version: 1.18
 authors: [ JaaumG ]
 description: attempt to develop a minecraft plugin
 website: https://github.com/JaaumG
+depend: [SkinsRestorer]
 commands:
     ping:
-      description: Teste
+      description: Ping
       usage: /<command>
     gamemode:
       description: Trocar gamemode
       usage: /<command>
       aliases: gm
+    fake:
+      description: Trocar o nick
+      usage: /<command> nickname
