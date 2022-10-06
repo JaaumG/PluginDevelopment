@@ -15,8 +15,10 @@ public class Hat implements CommandExecutor {
                 Player player = ((Player) sender).getPlayer();
                 if(player.getInventory().getItemInMainHand().getAmount()>0) {
                     ItemStack itemInHand = player.getInventory().getItemInMainHand().clone();
-                    ItemStack itemInHead = player.getInventory().getHelmet();
-                    player.getInventory().addItem(itemInHead);
+                    if(player.getInventory().getHelmet()!=null) {
+                        ItemStack itemInHead = player.getInventory().getHelmet();
+                        player.getInventory().addItem(itemInHead);
+                    }
                     itemInHand.setAmount(1);
                     player.getInventory().setHelmet(itemInHand);
                     player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount() - 1);
