@@ -16,7 +16,7 @@ public class Fake implements CommandExecutor {
         if(command.getName().equalsIgnoreCase("fake")){
             if(sender instanceof Player){
                 SkinsRestorerAPI skinRestorerAPI = SkinsRestorerAPI.getApi();
-                if(args.length == 0 && ((Player) sender).getDisplayName()!=sender.getName()) {
+                if(args.length == 0 && !((Player) sender).getDisplayName().equals(sender.getName())) {
                     ((Player) sender).setCustomName(sender.getName());
                     ((Player) sender).setPlayerListName(sender.getName());
                     ((Player) sender).setDisplayName(sender.getName());

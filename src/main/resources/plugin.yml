@@ -24,3 +24,5 @@ commands:
       description: Alimentar-se ou alimentar outro jogador
       usage: /<command> [<player>]
     tag:
+    rtp:
+    hat:

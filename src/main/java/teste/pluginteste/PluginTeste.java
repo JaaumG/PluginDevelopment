@@ -26,7 +26,8 @@ public final class PluginTeste extends JavaPlugin {
         getCommand("heal").setExecutor(new Heal());
         getCommand("feed").setExecutor(new Feed());
         getCommand("tag").setExecutor(new Tag());
-
+        getCommand("rtp").setExecutor(new Rtp());
+        getCommand("hat").setExecutor(new Hat());
     }
 
     @Override
